@@ -2,7 +2,8 @@ body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #25007c, #4cb0fc);
+    /*background: linear-gradient(135deg, #25007c, #4cb0fc);*/
+    background: rgba(255, 250, 243, 0.918);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -88,6 +89,24 @@ button:hover {
     border: 1px solid #0152ff;
     background: beige;
     color: #0152ff;
+}
+
+.error {
+    color: #ff0c04;
+    background-color: #f8d7da;
+    border: 1px solid #ff0800;
+    border-radius: 5px; 
+    padding: 5px;
+    margin-bottom: 10px;
+    display: flex;
+    font-weight: bold;
+    align-items: center;
+}
+
+.error::before {
+    content: "⚠️";
+    font-size: 18px;
+    margin-right: 10px; 
 }
 
 @keyframes bounceIn {

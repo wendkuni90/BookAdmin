@@ -25,7 +25,7 @@ Notons que si la session du bibliothécaire est lancée il ne peux plus avoir
             if($fetch && password_verify($ad_passwd, $fetch['admin_pass'])){
                 echo "<script>alert('Connecté.')</script>";
             } else {
-                echo "<script>alert('Accès refusé.')</script>";
+                $error_message = "Accès refusé: Données incorrectes.";
             }
         }
     }
@@ -53,6 +53,11 @@ Notons que si la session du bibliothécaire est lancée il ne peux plus avoir
                     <input type="password" name="ad_pass" required>
                     <span class="placeholder">Mot de passe</span>
                 </div>
+
+                <?php if (!empty($error_message)): ?>
+                    <p class="error"><?= htmlspecialchars($error_message) ?></p>
+                <?php endif; ?>
+                
                 <button type="submit" name="ad_submit">Se Connecter</button>
             </form>
         </div>
