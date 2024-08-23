@@ -1,0 +1,121 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #25007c, #4cb0fc);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+}
+
+.login-box {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 100%;
+    max-width: 400px; /* Limite la largeur maximale pour les grands écrans */
+    box-sizing: border-box;
+    animation: bounceIn 1s;
+}
+
+h1 {
+    color: #0152ff;
+    margin-bottom: 20px;
+    font-size: 1.5em;
+}
+
+.textbox {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.textbox input {
+    width: 90%;
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    outline: none;
+    transition: border-color 0.3s;
+    box-sizing: border-box;
+}
+
+.textbox input:focus {
+    border-color: #0152ff;
+}
+
+.textbox .placeholder {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 14px;
+    color: #aaa;
+    transition: 0.3s;
+}
+
+.textbox input:focus + .placeholder,
+.textbox input:not(:placeholder-shown) + .placeholder {
+    top: -10px;
+    left: 18px;
+    font-size: 12px;
+    color: #0152ff;
+}
+
+button {
+    width: 40%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background: #0152ff;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+button:hover {
+    border: 1px solid #0152ff;
+    background: beige;
+    color: #0152ff;
+}
+
+@keyframes bounceIn {
+    0% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .login-box {
+        padding: 15px;
+    }
+    h1 {
+        font-size: 1.2em;
+    }
+    .textbox input {
+        padding: 8px;
+    }
+    button {
+        font-size: 14px;
+        padding: 8px;
+    }
+}
