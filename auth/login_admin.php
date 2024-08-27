@@ -8,12 +8,16 @@ Notons que si la session du bibliothécaire est lancée il ne peux plus avoir
 
 <?php
 
+    if(isset($_SESSION['ad_name'])){
+        header("location: ../manage/admin_dash.php");
+    }
+
     if(isset($_POST['ad_submit'])){
         if(empty($_POST['ad_name']) OR empty($_POST['ad_pass'])){
             echo "<script>alert('Attention: Un des champs est vide.')</script>";
         } else {
-            $ad_name = $_POST['ad_name'];
-            $ad_passwd = $_POST['ad_pass'];
+            $ad_name = trim($_POST['ad_name']);
+            $ad_passwd = trim($_POST['ad_pass']);
 
             // Requête préparée pour éviter les injections SQL
             $stmt = $conn->prepare("SELECT * FROM admin WHERE admin_name = :name");
@@ -23,7 +27,8 @@ Notons que si la session du bibliothécaire est lancée il ne peux plus avoir
 
             // Validation du mot de passe
             if($fetch && password_verify($ad_passwd, $fetch['admin_pass'])){
-                echo "<script>alert('Connecté.')</script>";
+                $_SESSION['ad_name'] = $fetch['admin_name'];
+                header("location: ../manage/admin_dash.php");
             } else {
                 $error_message = "Accès refusé: Données incorrectes.";
             }
@@ -57,7 +62,7 @@ Notons que si la session du bibliothécaire est lancée il ne peux plus avoir
                 <?php if (!empty($error_message)): ?>
                     <p class="error"><?= htmlspecialchars($error_message) ?></p>
                 <?php endif; ?>
-                
+
                 <button type="submit" name="ad_submit">Se Connecter</button>
             </form>
         </div>
