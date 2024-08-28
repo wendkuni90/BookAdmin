@@ -7,6 +7,12 @@
 	}
 
 ?>
+<?php require "scripts/total_Student.php" ?>
+<?php require "scripts/total_Librarian.php" ?>
+<?php require "scripts/total_Book.php" ?>
+<?php require "scripts/total_Borrowings.php" ?>
+<?php require "scripts/recent_Student.php" ?>
+<?php require "scripts/recent_Borrowings.php" ?>
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -41,6 +47,14 @@
 				<i class='bx bx-user'></i>
 				<span class="links_name">
 					Bibliothécaires
+				</span>
+				</a>
+			</li>
+			<li>
+				<a href="library.php">
+				<i class='bx bx-book-open'></i>
+				<span class="links_name">
+					Bibliothèques
 				</span>
 				</a>
 			</li>
@@ -123,7 +137,7 @@
 		<div class="card-boxes">
 			<div class="box">
 				<div class="right_side">
-					<div class="numbers">15</div>
+					<div class="numbers"> <?php echo $totalLibrarian; ?> </div>
 					<div class="box_topic">Bibliothécaires</div>
 				</div>
 				<i class='bx bx-user'></i>
@@ -131,7 +145,7 @@
 
 			<div class="box">
 				<div class="right_side">
-					<div class="numbers">100</div>
+					<div class="numbers"> <?php echo $totalEtudiant; ?> </div>
 					<div class="box_topic">Etudiants</div>
 				</div>
 				<i class='bx bxs-user'></i>
@@ -139,7 +153,7 @@
 			
 			<div class="box">
 				<div class="right_side">
-					<div class="numbers">500</div>
+					<div class="numbers"> <?php echo $totalBook; ?> </div>
 					<div class="box_topic">Livres</div>
 				</div>
 				<i class='bx bx-book-open'></i>
@@ -147,7 +161,7 @@
 
 			<div class="box">
 				<div class="right_side">
-					<div class="numbers">509</div>
+					<div class="numbers"> <?php echo $totalEmprunts; ?> </div>
 					<div class="box_topic">Emprunts</div>
 				</div>
 				<i class='bx bxs-cart'></i>
@@ -162,37 +176,38 @@
 				<table>
 					<thead>
 						<tr>
-							<td>Livre emprunté</td>
-							<td>Emprunteur</td>
+							<td>Titre du livre</td>
+							<td>Etudiant</td>
 							<td>Statut</td>
 							<td>Date d'emprunt</td>
 						</tr>
 					</thead>
 					<!-- Nous afficherons que les 10 derniers etudiants et emprunts -->
 					<tbody>
-						<tr>
-							<td>Web app Design System</td>
-							<td>108</td>
-							<td>
-								<span class="badge bg_seccuss">
-									Track
-								</span>
-							</td>
-							<td>
-								<span class="img_group">
-									<img src="img/avatar-2.jpg" alt="">
-								</span>
-								<span class="img_group">
-									<img src="img/avatar-3.jpg" alt="">
-								</span>
-								<span class="img_group">
-									<img src="img/avatar-4.jpg" alt="">
-								</span>
-									<span class="img_group">
-									<span class="initial">+5</span>
-								</span>
-							</td>
-						</tr>
+						<?php if(!empty($borrows)): ?>
+							<?php foreach ($borrows as $borrow): ?>
+								<tr>
+									<td>
+										<?= htmlspecialchars($borrow['book_title']); ?>
+									</td>
+									<td>
+										<?= htmlspecialchars($borrow['student_name']); ?>
+									</td>
+									<td>
+										<span class="badge bg_danger">
+											<?= htmlspecialchars($borrow['borrow_status']); ?>
+										</span>
+									</td>
+									<td>
+										<?= htmlspecialchars($borrow['borrow_date']); ?>
+									</td>
+								</tr>
+							<?php endforeach; ?>
+						<?php else: ?>
+							<tr>
+								<td colspan="4">Auncun Emprunt en cours trouvé.</td>
+							</tr>
+						<?php endif; ?>
 					</tbody>
 				</table>
 			</div>
@@ -203,41 +218,34 @@
 				</div>
 				<table>
 					<tbody>
-						<tr>
-							<td>
-								N00162020221
-							</td>
-							<td>
-								<h4>Christina Mason</h4>
-								<span>Christina@gmail.com</span>
-							</td>
-						</tr>
+						<?php if(!empty($students)): ?>
+							<?php foreach ($students as $student): ?>
+								<tr>
+									<td style="text-transform: uppercase;">
+										<?= htmlspecialchars($student['student_ine']); ?>
+									</td>
+									<td>
+										<h4 style="text-transform: uppercase; font-size:13px;">
+											<?= htmlspecialchars($student['student_name']); ?>
+										</h4>
+
+										<span style="font-size:12px;">
+											<?= htmlspecialchars($student['student_mail']); ?>
+										</span>
+									</td>
+								</tr>
+							<?php endforeach; ?>
+						<?php else: ?>
+							<tr>
+								<td colspan="2">Auncun étudiant inscrit il y a moins de 5 jours.</td>
+							</tr>
+						<?php endif; ?>
 					</tbody>
 				</table>
 			</div>
 		</div>
 	</section>
 
-	<script>
-		let sidebar = document.querySelector(".sidebar");
-		let closeBtn = document.querySelector("#btn");
-
-		closeBtn.addEventListener("click", () => {
-			sidebar.classList.toggle("open");
-			changeBtnIcon();
-		});
-
-		function changeBtnIcon() {
-		// Bascule entre les icônes bx-menu et bx-menu-alt-right
-			if (sidebar.classList.contains("open")) {
-				closeBtn.classList.remove("bx-menu");
-				closeBtn.classList.add("bx-menu-alt-right");
-			} else {
-				closeBtn.classList.remove("bx-menu-alt-right");
-				closeBtn.classList.add("bx-menu");
-			}
-		}
-
-	</script>
+	<script src="../assets/js/dash.js"></script>
 </body>
 </html>
