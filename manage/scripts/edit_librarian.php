@@ -1,14 +1,57 @@
-<?php require "../includes/admin_session.php" ?>
-<?php require "../config/config.php" ?>
+<?php require "../../includes/admin_session.php" ?>
+<?php require "../../config/config.php" ?>
 <?php 
 
 	if(!isset($_SESSION['ad_name'])){
-		header("location: ../auth/login_admin.php");
+		header("location: ../../auth/login_admin.php");
 	}
 
-?>
+    if(isset($_GET['id'])) {
+        $librarian_id = $_GET['id'];
+        if($_SERVER["REQUEST_METHOD"] == "POST"){
+            $librarian_name = htmlspecialchars(trim($_POST['librarian_name']));
+            $librarian_mail = htmlspecialchars(trim($_POST['librarian_mail']));
+            $librarian_tel = htmlspecialchars(trim($_POST['librarian_tel']));
+            //Library_id ne prendra pas la valeur du post. On va chercher le id de la bibliothèque dont le nom a 
+            // été passé en paramètre ensuite on place cet id dans libray_id et le tour est joué. 
+            // Le pb est que j'aurai a gérer une liste déroulante pour les bays bays mais ca va aller je gère
+            $library_id = htmlspecialchars(trim($_POST['library_id']));
 
-<?php require "scripts/librarian_script/total_librarian.php" ?>
+            $sql = "UPDATE librarian SET librarian_name = :librarian_name,
+                    librarian_mail = :librarian_mail, librarian_tel = :librarian_tel, library_id = :library_id
+                    WHERE librarian_id = :librarian_id";
+
+            $stmt = $conn->prepare($sql);
+
+            $stmt->bindParam(':librarian_name', $librarian_name);
+            $stmt->bindParam(':librarian_mail', $librarian_mail);
+            $stmt->bindParam(':librarian_tel', $librarian_tel);
+            $stmt->bindParam(':library_id', $library_id, PDO::PARAM_INT);
+            $stmt->bindParam(':librarian_id', $librarian_id, PDO::PARAM_INT);
+
+            $stmt->execute();
+            header("Location: ../librarian.php");
+        } else {
+            $sql = "SELECT lb.library_id, lb.librarian_name, l.library_name, lb.librarian_tel, lb.librarian_mail
+                    FROM librarian lb
+                    JOIN library l ON (lb.library_id = l.library_id)
+                    WHERE lb.librarian_id = :librarian_id";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':librarian_id', $librarian_id, PDO::PARAM_INT);
+            $stmt->execute();
+            $librarian = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            $sql1 = "SELECT l.library_id, l.library_name
+                    FROM library l";
+            $stmt1 = $conn->prepare($sql);
+            $stmt1->execute();
+            $libraries = $stmt1->fetchAll(PDO::FETCH_ASSOC);
+        }
+    } else {
+        header("Location: ../librarian.php");
+    }
+
+?>
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -16,8 +59,8 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Panneau Administrateur</title>
-	<link rel="stylesheet" href="../assets/css/librarian.css">
+	<title>Edition bibliothécaire</title>
+	<link rel="stylesheet" href="../../assets/css/librarian.css">
 
 	<link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
 </head>
@@ -134,61 +177,11 @@
 
 		<div class="details">
 			<div class="recent_project">
-				<div class="card_header">
-					<h2>Bibliothécaires</h2>
-				</div>
-				<table>
-					<thead>
-						<tr>
-							<td>Numéro</td>
-							<td>Nom</td>
-							<td>Bibliothèque</td>
-							<td>Contact</td>
-							<td>Email</td>
-							<td>Actions</td>
-						</tr>
-					</thead>
-					<tbody>
-						<?php if(!empty($librarians)): ?>
-							<?php foreach ($librarians as $librarian): ?>
-								<tr>
-									<td>
-										<?= htmlspecialchars($librarian['librarian_id']); ?>
-									</td>
-									<td style="text-transform:uppercase;">
-										<?= htmlspecialchars($librarian['librarian_name']); ?>
-									</td>
-									<td style="text-transform:uppercase;">
-										<?= htmlspecialchars($librarian['library_name']); ?>
-									</td>
-									<td>
-										<?= htmlspecialchars($librarian['librarian_tel']); ?>
-									</td>
-									<td style="text-transform:lowercase;">
-										<?= htmlspecialchars($librarian['librarian_mail']); ?>
-									</td>
-									<td style="display:flex;">
-										<a href="scripts/edit_librarian.php?id=<?=$librarian['librarian_id'];?>" style="width:32px; height:32px; margin-right:5px">
-											<img src="../assets/img/edit.svg" alt="">
-										</a> 
-										<div style="width:1px;height:22px;background-color:black;"></div>
-										<a href="scripts/delete_librarian.php?id=<?=$librarian['librarian_id'];?>" onclick="return confirm('Supprimer bibliothécaire ?');" style="width:32px; height:32px;margin-left:5px">
-											<img src="../assets/img/trash.svg" alt="">
-										</a>
-									</td>
-								</tr>
-							<?php endforeach; ?>
-						<?php else: ?>
-							<tr>
-								<td>Aucun bibliothécaire.</td>
-							</tr>
-						<?php endif; ?>
-					</tbody>
-				</table>
+				
 			</div>
 		</div>
 	</section>
 
-	<script src="../assets/js/dash.js"></script>
+	<script src="../../assets/js/dash.js"></script>
 </body>
 </html>
