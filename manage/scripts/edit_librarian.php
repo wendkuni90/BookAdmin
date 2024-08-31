@@ -20,7 +20,8 @@
 
             $stmt = $conn->prepare($sql);
             $stmt->execute([$librarian_name, $librarian_mail, $librarian_tel, $library_id, $librarian_id]);
-            header("Location: ../librarian.php");
+            header("Location: ../librarian.php?success=true");
+			exit();
         } else {
             $sql = "SELECT lb.library_id, lb.librarian_name, l.library_name, lb.librarian_tel, lb.librarian_mail
                     FROM librarian lb
@@ -52,7 +53,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Edition bibliothécaire</title>
 	<link rel="stylesheet" href="../../assets/css/librarian.css">
-
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
 	<link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
@@ -164,10 +165,11 @@
 			</div>
 		</div>
 
-		
+		<ul class="notifications"></ul>
 
 		<div class="details">
 			<div class="recent_project">
+				<h2>Edition</h2>
 				<form method="POST">
                     <input type="text" name="librarian_name" value="<?= $librarian['librarian_name']; ?>" required>
                     <input type="text" name="librarian_tel" value="<?= $librarian['librarian_tel']; ?>" required>
@@ -185,5 +187,5 @@
 	</section>
 
 	<script src="../../assets/js/dash.js"></script>
-</body>
+
 </html>

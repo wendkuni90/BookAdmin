@@ -157,6 +157,7 @@
 
 		<div class="details">
 			<div class="recent_project">
+				<h2>Edition</h2>
 				<form method="POST">
                     <input type="text" name="library_name" value="<?= $library['library_name']; ?>" required>
                     <input type="submit" value="Mettre à jour">

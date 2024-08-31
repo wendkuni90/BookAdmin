@@ -18,7 +18,6 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Panneau Administrateur</title>
 	<link rel="stylesheet" href="../assets/css/librarian.css">
-
 	<link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
@@ -133,6 +132,7 @@
 		
 
 		<div class="details">
+
 			<div class="recent_project">
 				<div class="card_header">
 					<h2>Bibliothécaires</h2>
