@@ -12,7 +12,7 @@
 	$stmt1->execute();
 	$libraries = $stmt1->fetchAll(PDO::FETCH_ASSOC);
 
-	if($_SERVER["REQUEST_METHOD"] == "POST") {
+	if($_SERVER["REQUEST_METHOD"] == "POST" ) {
 		$library_name = htmlspecialchars($_POST['library_name']);
 
    		// Je vérifie si la bibliothèque existe déjà
@@ -43,7 +43,9 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Ajouter Bibliothèque</title>
-	<link rel="stylesheet" href="../assets/css/librarian.css">
+	<link rel="stylesheet" href="../assets/css/libra.css">
+	<link rel="stylesheet" href="../assets/css/edit_libra.css">
+	<link rel="stylesheet" href="../assets/css/add_libra.css">
 	<style>
 		.error {
 			color: #ff0c04;
@@ -174,7 +176,7 @@
 			</div>
 		</div>
 
-		<div class="details">
+		<!-- <div class="details">
 			<div class="recent_project">
 				<h2 style="margin-bottom:20px;">Ajout de bibliothèque</h2>
 				<form method="post">
@@ -183,18 +185,80 @@
 						<input type="text" name="library_name" id="name" style="text-transform:uppercase;" required>
 					</div>
 
-					<?php if (!empty($error_message)): ?>
-                    	<p class="error"><?= htmlspecialchars($error_message) ?></p>
-                	<?php endif; ?>
-
 					<div>
 						<input type="submit" name="add" value="Ajouter">
 					</div>
 				</form>
 			</div>
+		</div> -->
+		<div class="details">
+        <div class="recent_project">
+            <h2 style="margin-bottom:20px;">Ajout de bibliothèque</h2>
+            <form id="libraryForm" method="post">
+                <div>
+                    <input type="text" name="library_name" id="name" style="text-transform:uppercase;" placeholder="Nom de la bibliothèque" required>
+                </div>
+
+                <?php if (!empty($error_message)): ?>
+                    <p class="error"><?= htmlspecialchars($error_message) ?></p>
+                <?php endif; ?>
+
+                <div>
+                    <input type="submit" name="add" value="Ajouter" onclick="openModal(event)">
+                </div>
+            </form>
+        </div>
 		</div>
+		<!-- <div id="confirmationModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeConfirmationModal()">&times;</span>
+            <h2>Confirmation</h2>
+            <p>Êtes-vous sûr de vouloir ajouter cette bibliothèque ?</p>
+            <button id="confirmButton" onclick="submitForm()">Oui</button>
+            <button id="cancelButton" onclick="closeConfirmationModal()">Non</button>
+        </div>
+    </div> -->
+
 	</section>
 
 	<script src="../assets/js/dash.js"></script>
+	<!-- <script>
+document.addEventListener("DOMContentLoaded", function() {
+    const form = document.getElementById('libraryForm');
+    const nameInput = document.getElementById('libraryName');
+    const submitButton = document.getElementById('submitButton');
+    const modal = document.getElementById('previewModal');
+    const closeButton = document.querySelector('.close-button');
+    const confirmButton = document.getElementById('confirmButton');
+    const cancelButton = document.getElementById('cancelButton');
+
+    submitButton.addEventListener('click', function(event) {
+        event.preventDefault();
+        document.getElementById('previewLibraryName').textContent = nameInput.value;
+
+        modal.style.display = "flex";
+    });
+
+    closeButton.addEventListener('click', function() {
+        modal.style.display = "none";
+    });
+
+    confirmButton.addEventListener('click', function() {
+        modal.style.display = "none";
+        form.submit(); // Soumet le formulaire après confirmation
+    });
+
+    cancelButton.addEventListener('click', function() {
+        modal.style.display = "none";
+    });
+
+    window.addEventListener('click', function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    });
+});
+
+	</script> -->
 </body>
 </html>

@@ -40,8 +40,8 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Edition Bibliothèque</title>
-	<link rel="stylesheet" href="../../assets/css/librarian.css">
-
+	<link rel="stylesheet" href="../../assets/css/libra.css">
+	<link rel="stylesheet" href="../../assets/css/edit_libra.css">
 	<link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
@@ -153,19 +153,30 @@
 			</div>
 		</div>
 
-		
-
 		<div class="details">
 			<div class="recent_project">
 				<h2>Edition</h2>
-				<form method="POST">
-                    <input type="text" name="library_name" value="<?= $library['library_name']; ?>" required>
-                    <input type="submit" value="Mettre à jour">
-                </form>
+				<form id="libraryForm" method="POST">
+					<input style="text-transform:uppercase;" type="text" name="library_name" id="libraryName" placeholder="Nom de la bibliothèque" value="<?= $library['library_name']; ?>" required>
+					<div class="error" id="nameError"></div>
+
+					<input type="submit" id="submitButton" value="Mettre à jour">
+				</form>
 			</div>
 		</div>
+		<div id="previewModal" class="modal">
+    <div class="modal-content">
+        <span class="close-button">&times;</span>
+        <h2>Confirmer les modifications</h2>
+        <p>Nom de la bibliothèque: <span id="previewLibraryName"></span></p>
+        <button id="confirmButton">Confirmer</button>
+        <button id="cancelButton">Annuler</button>
+    </div>
+</div>
+
 	</section>
 
 	<script src="../../assets/js/dash.js"></script>
+	<script src="../../assets/js/apercu.js"></script>
 </body>
 </html>

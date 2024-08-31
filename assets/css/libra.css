@@ -1,6 +1,6 @@
 :root {
-    --dark-blue: rgb(15, 15, 34);
-    --white-blue: #1D1D31;
+    --blue: #0056b3; /* Couleur bleue uniforme pour tout le site */
+    --dark-blue: #003d7a; /* Couleur bleue plus foncée pour les éléments sombres */
     --white: #fff;
     --gray: #8390a2;
 }
@@ -262,7 +262,7 @@
     color: var(--dark-blue);
 }
 
-.details {
+/* .details {
     position: relative;
     width: 100%;
     padding: 20px;
@@ -322,7 +322,81 @@
 }
 .details .recent_project table tbody tr td:last-child {
     padding-left: 2rem;
+} */
+/* Style de la section des détails */
+.details {
+    position: relative;
+    width: 100%;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 3fr;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
+.details .recent_project {
+    position: relative;
+    display: grid;
+    padding: 20px;
+    border-radius: 20px;
+    overflow-y: auto;
+    white-space: nowrap;
+}
+/* Style de l'en-tête de la carte */
+.card_header h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Style du tableau */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* Style des en-têtes du tableau */
+table thead tr {
+    background-color: #007bff;
+    color: #fff;
+}
+
+table thead td {
+    padding: 10px;
+    text-align: left;
+    font-weight: bold;
+}
+
+/* Style des cellules du tableau */
+table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+table tbody tr:hover {
+    background-color: #e0e0e0;
+    cursor: pointer;
+}
+
+table td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Style du texte en majuscules */
+table td[style*="text-transform:uppercase;"] {
+    text-transform: uppercase;
+    color: #007bff;
+}
+
+/* Style pour les messages lorsqu'il n'y a pas de livres */
+table tbody td[colspan="4"] {
+    text-align: center;
+    font-style: italic;
+    color: #777;
+}
+
 
 
 

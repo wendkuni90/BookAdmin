@@ -52,9 +52,10 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Edition bibliothécaire</title>
-	<link rel="stylesheet" href="../../assets/css/librarian.css">
+	<link rel="stylesheet" href="../../assets/css/libra.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
 	<link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+	<link rel="stylesheet" href="../../assets/css/edit_libra1.css">
 </head>
 <body>
 	<div class="sidebar">
@@ -165,27 +166,45 @@
 			</div>
 		</div>
 
-		<ul class="notifications"></ul>
-
 		<div class="details">
 			<div class="recent_project">
 				<h2>Edition</h2>
-				<form method="POST">
-                    <input type="text" name="librarian_name" value="<?= $librarian['librarian_name']; ?>" required>
-                    <input type="text" name="librarian_tel" value="<?= $librarian['librarian_tel']; ?>" required>
-                    <input type="mail" name="librarian_mail" value="<?= $librarian['librarian_mail']; ?>">
-                    <select name="library_id" id="" required>
-                        <option value="<?= $librarian['library_id']; ?>"> <?= $librarian['library_name']; ?> </option>
-                        <?php foreach ($libraries as $library): ?>
-                            <option value="<?= $library['library_id']; ?>"> <?= $library['library_name']; ?> </option>
-                        <?php endforeach; ?>
-                    </select>
-                    <input type="submit" value="Mettre à jour">
-                </form>
+				<form id="librarianForm" method="POST">
+					<input type="text" name="librarian_name" id="librarianName" placeholder="Nom" value="<?= $librarian['librarian_name']; ?>" required>
+					<div class="error" id="nameError"></div>
+
+					<input type="text" name="librarian_tel" id="librarianTel" placeholder="Téléphone" value="<?= $librarian['librarian_tel']; ?>" required>
+					<div class="error" id="telError"></div>
+
+					<input type="email" name="librarian_mail" id="librarianMail" placeholder="Email" value="<?= $librarian['librarian_mail']; ?>">
+					<div class="error" id="mailError"></div>
+
+					<select name="library_id" id="librarySelect" required>
+						<option value="<?= $librarian['library_id']; ?>"><?= $librarian['library_name']; ?></option>
+						<?php foreach ($libraries as $library): ?>
+							<option value="<?= $library['library_id']; ?>"><?= $library['library_name']; ?></option>
+						<?php endforeach; ?>
+					</select>
+					
+					<input type="button" id="submitButton" value="Mettre à jour">
+				</form>
 			</div>
 		</div>
+		<div id="previewModal">
+    <div class="modal-content">
+        <span class="close-button">&times;</span>
+        <h2>Confirmer les modifications</h2>
+        <p>Nom: <span id="previewLibrarianName"></span></p>
+        <p>Téléphone: <span id="previewLibrarianTel"></span></p>
+        <p>Email: <span id="previewLibrarianMail"></span></p>
+        <p>Bibliothèque: <span id="previewLibraryName"></span></p>
+        <button id="confirmButton">Confirmer</button>
+        <button id="cancelButton">Annuler</button>
+    </div>
+</div>
+
 	</section>
 
 	<script src="../../assets/js/dash.js"></script>
-
+	<script src="../../assets/js/app1.js"></script>
 </html>
