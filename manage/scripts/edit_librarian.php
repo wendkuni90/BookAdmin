@@ -9,27 +9,17 @@
     if(isset($_GET['id'])) {
         $librarian_id = $_GET['id'];
         if($_SERVER["REQUEST_METHOD"] == "POST"){
-            $librarian_name = htmlspecialchars(trim($_POST['librarian_name']));
-            $librarian_mail = htmlspecialchars(trim($_POST['librarian_mail']));
-            $librarian_tel = htmlspecialchars(trim($_POST['librarian_tel']));
-            //Library_id ne prendra pas la valeur du post. On va chercher le id de la bibliothèque dont le nom a 
-            // été passé en paramètre ensuite on place cet id dans libray_id et le tour est joué. 
-            // Le pb est que j'aurai a gérer une liste déroulante pour les bays bays mais ca va aller je gère
-            $library_id = htmlspecialchars(trim($_POST['library_id']));
 
-            $sql = "UPDATE librarian SET librarian_name = :librarian_name,
-                    librarian_mail = :librarian_mail, librarian_tel = :librarian_tel, library_id = :library_id
-                    WHERE librarian_id = :librarian_id";
+            $librarian_name = htmlspecialchars($_POST['librarian_name']);
+            $librarian_mail = htmlspecialchars($_POST['librarian_mail']);
+            $librarian_tel = htmlspecialchars($_POST['librarian_tel']);
+            $library_id = $_POST['library_id'];
+
+            $sql = "UPDATE librarian SET librarian_name = ?, librarian_mail = ?, librarian_tel = ?, library_id = ?
+                    WHERE librarian_id = ?";
 
             $stmt = $conn->prepare($sql);
-
-            $stmt->bindParam(':librarian_name', $librarian_name);
-            $stmt->bindParam(':librarian_mail', $librarian_mail);
-            $stmt->bindParam(':librarian_tel', $librarian_tel);
-            $stmt->bindParam(':library_id', $library_id, PDO::PARAM_INT);
-            $stmt->bindParam(':librarian_id', $librarian_id, PDO::PARAM_INT);
-
-            $stmt->execute();
+            $stmt->execute([$librarian_name, $librarian_mail, $librarian_tel, $library_id, $librarian_id]);
             header("Location: ../librarian.php");
         } else {
             $sql = "SELECT lb.library_id, lb.librarian_name, l.library_name, lb.librarian_tel, lb.librarian_mail
@@ -39,12 +29,13 @@
             $stmt = $conn->prepare($sql);
             $stmt->bindParam(':librarian_id', $librarian_id, PDO::PARAM_INT);
             $stmt->execute();
-            $librarian = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $librarian = $stmt->fetch(PDO::FETCH_ASSOC);
 
             $sql1 = "SELECT l.library_id, l.library_name
-                    FROM library l";
-            $stmt1 = $conn->prepare($sql);
-            $stmt1->execute();
+                    FROM library l
+                    WHERE l.library_id != ?";
+            $stmt1 = $conn->prepare($sql1);
+            $stmt1->execute([$librarian['library_id']]);
             $libraries = $stmt1->fetchAll(PDO::FETCH_ASSOC);
         }
     } else {
@@ -74,7 +65,7 @@
 		</div>
 		<ul>
 			<li>
-				<a href="admin_dash.php">
+				<a href="../admin_dash.php">
 				<i class='bx bx-grid-alt'></i>
 				<span class="links_name">
 					Tableau de bord
@@ -82,7 +73,7 @@
 				</a>
 			</li>
 			<li>
-				<a href="librarian.php" class="active">
+				<a href="../librarian.php" class="active">
 				<i class='bx bx-user'></i>
 				<span class="links_name">
 					Bibliothécaires
@@ -90,7 +81,7 @@
 				</a>
 			</li>
 			<li>
-				<a href="library.php">
+				<a href="../library.php">
 				<i class='bx bx-book-open'></i>
 				<span class="links_name">
 					Bibliothèques
@@ -98,7 +89,7 @@
 				</a>
 			</li>
 			<li>
-				<a href="student.php">
+				<a href="../student.php">
 				<i class='bx bx-user'></i>
 				<span class="links_name">
 					Etudiants
@@ -106,7 +97,7 @@
 				</a>
 			</li>
 			<li>
-				<a href="book.php">
+				<a href="../book.php">
 				<i class='bx bx-book' ></i>
 				<span class="links_name">
 					Livres
@@ -114,7 +105,7 @@
 				</a>
 			</li>
 			<li>
-				<a href="borrow.php">
+				<a href="../borrow.php">
 				<i class='bx bxs-cart'></i>
 				<span class="links_name">
 					Emprunts
@@ -122,7 +113,7 @@
 				</a>
 			</li>
 			<li>
-				<a href="add_library.php">
+				<a href="../add_library.php">
 				<i class='bx bxs-book'></i>
 				<span class="links_name">
 					Ajouter Bibliothèque
@@ -130,7 +121,7 @@
 				</a>
 			</li>
 			<li>
-				<a href="add_librarian.php">
+				<a href="../add_librarian.php">
 				<i class='bx bxs-user-plus'></i>
 				<span class="links_name">
 					Ajouter Bibliothécaire
@@ -138,14 +129,14 @@
 				</a>
 			</li>
 			<li>
-				<a href="setting.php">
+				<a href="../setting.php">
 				<i class='bx bx-cog'></i>
 				<span class="links_name">
 					Paramètres
 				</span>
 				</a>
 			</li>
-			<li class="login">
+			<li class="../login">
 				<a href="logout.php">
 				<span class="links_name login_out">
 					Se déconnecter
@@ -177,7 +168,18 @@
 
 		<div class="details">
 			<div class="recent_project">
-				
+				<form method="POST">
+                    <input type="text" name="librarian_name" value="<?= $librarian['librarian_name']; ?>" required>
+                    <input type="text" name="librarian_tel" value="<?= $librarian['librarian_tel']; ?>" required>
+                    <input type="mail" name="librarian_mail" value="<?= $librarian['librarian_mail']; ?>">
+                    <select name="library_id" id="" required>
+                        <option value="<?= $librarian['library_id']; ?>"> <?= $librarian['library_name']; ?> </option>
+                        <?php foreach ($libraries as $library): ?>
+                            <option value="<?= $library['library_id']; ?>"> <?= $library['library_name']; ?> </option>
+                        <?php endforeach; ?>
+                    </select>
+                    <input type="submit" value="Mettre à jour">
+                </form>
 			</div>
 		</div>
 	</section>
