@@ -1,6 +1,6 @@
 :root {
-    --blue: #cdddee; /* Couleur bleue uniforme pour tout le site */
-    --dark-blue: #003d7a; /* Couleur bleue plus foncée pour les éléments sombres */
+    --blue: #0056b3; /* Couleur bleue uniforme pour tout le site */
+    --dark-blue: #1c232b; /* Couleur bleue plus foncée pour les éléments sombres */
     --white: #fff;
     --gray: #8390a2;
 }

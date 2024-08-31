@@ -170,16 +170,16 @@
 			<div class="recent_project">
 				<h2>Edition</h2>
 				<form id="librarianForm" method="POST">
-					<input type="text" name="librarian_name" id="librarianName" placeholder="Nom" value="<?= $librarian['librarian_name']; ?>" required>
+					<input type="text" style="text-transform:uppercase;" name="librarian_name" id="librarianName" placeholder="Nom" value="<?= $librarian['librarian_name']; ?>" required>
 					<div class="error" id="nameError"></div>
 
 					<input type="text" name="librarian_tel" id="librarianTel" placeholder="Téléphone" value="<?= $librarian['librarian_tel']; ?>" required>
 					<div class="error" id="telError"></div>
 
-					<input type="email" name="librarian_mail" id="librarianMail" placeholder="Email" value="<?= $librarian['librarian_mail']; ?>">
+					<input type="email" style="text-transform:lowercase;" name="librarian_mail" id="librarianMail" placeholder="Email" value="<?= $librarian['librarian_mail']; ?>">
 					<div class="error" id="mailError"></div>
 
-					<select name="library_id" id="librarySelect" required>
+					<select name="library_id" id="librarySelect" style="text-transform:uppercase;" required>
 						<option value="<?= $librarian['library_id']; ?>"><?= $librarian['library_name']; ?></option>
 						<?php foreach ($libraries as $library): ?>
 							<option value="<?= $library['library_id']; ?>"><?= $library['library_name']; ?></option>
