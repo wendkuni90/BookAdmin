@@ -2,6 +2,7 @@
 
 	if(!isset($_SESSION['ad_name'])){
 		header("location: ../../auth/login_admin.php");
+        exit();
 	}
 
 	$sql = "SELECT b.book_title, s.student_name, br.borrow_status, br.borrow_date

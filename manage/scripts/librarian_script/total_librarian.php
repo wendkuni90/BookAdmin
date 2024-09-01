@@ -2,6 +2,7 @@
 
 	if(!isset($_SESSION['ad_name'])){
 		header("location: ../../../auth/login_admin.php");
+		exit();
 	}
 
 	$sql = "SELECT lb.librarian_id, lb.librarian_name, l.library_name, lb.librarian_tel, lb.librarian_mail

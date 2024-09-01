@@ -2,6 +2,7 @@
 
 	if(!isset($_SESSION['ad_name'])){
 		header("location: ../../../auth/login_admin.php");
+        exit();
 	}
 
 	$sql = "SELECT l.library_id, l.library_name, COUNT(DISTINCT lb.librarian_id) AS total_librarians,

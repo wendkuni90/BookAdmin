@@ -4,6 +4,7 @@
 
 	if(!isset($_SESSION['ad_name'])){
 		header("location: ../../auth/login_admin.php");
+		exit();
 	}
 
     if(isset($_GET['id'])) {
@@ -18,6 +19,7 @@
             $stmt = $conn->prepare($sql);
             $stmt->execute([$library_name, $library_id]);
             header("Location: ../library.php");
+			exit();
         } else {
 
             $sql1 = "SELECT l.library_name
@@ -29,6 +31,7 @@
         }
     } else {
         header("Location: ../library.php");
+		exit();
     }
 
 ?>

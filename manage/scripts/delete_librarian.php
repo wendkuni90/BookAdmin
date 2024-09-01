@@ -4,6 +4,7 @@
 
 	if(!isset($_SESSION['ad_name'])){
 		header("location: ../../auth/login_admin.php");
+        exit();
 	}
 
     if(isset($_GET['id'])) {
@@ -13,8 +14,10 @@
         $stmt->bindParam(':librarian_id', $librarian_id, PDO::PARAM_INT);
         $stmt->execute();
         header("Location: ../librarian.php");
+        exit();
     } else {
         header("Location: ../librarian.php");
+        exit();
     }
 
 ?>

@@ -2,6 +2,7 @@
 
 	if(!isset($_SESSION['ad_name'])){
 		header("location: ../../auth/login_admin.php");
+		exit();
 	}
 
 	//Nombre total de Livres de toutes les bibliothèques

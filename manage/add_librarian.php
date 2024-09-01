@@ -4,6 +4,7 @@
 
 	if(!isset($_SESSION['ad_name'])){
 		header("location: ../auth/login_admin.php");
+		exit();
 	}
 
 	$sql1 = "SELECT l.library_id, l.library_name
