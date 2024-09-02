@@ -41,6 +41,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Ajouter Bibliothécaire</title>
 	<link rel="stylesheet" href="../assets/css/libra.css">
+	<link rel="stylesheet" href="../assets/css/add_lib.css">
 	<link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
@@ -157,20 +158,16 @@
 				<h2 style="margin-bottom:20px;">Ajout de bibliothécaire</h2>
 				<form method="post">
 					<div>
-						<label for="name">Nom complet</label>
-						<input type="text" name="librarian_name" id="name" style="text-transform:uppercase;" required>
+						<input type="text" name="librarian_name" id="name" placeholder="Nom Complet" style="text-transform:uppercase;" required>
 					</div>
 					<div>
-						<label for="mail">Email</label>
-						<input type="text" name="librarian_mail" id="mail" style="text-transform:lowercase;">
+						<input type="text" name="librarian_mail" id="mail" placeholder="Email" style="text-transform:lowercase;">
 					</div>
 					<div>
-						<label for="tel">Numéro (+xxx xxx...)</label>
-						<input type="text" name="librarian_tel" id="tel" required>
+						<input type="text" name="librarian_tel" id="tel" placeholder="Numéro(+xxx xx...)" required>
 					</div>
 					<div>
-						<label for="library">Bibliothèque</label>
-						<select name="library_id" id="" required>
+						<select name="library_id" id="library" required style="text-transform:uppercase;">
 							<?php foreach ($libraries as $library): ?>
 								<option value="<?= $library['library_id']; ?>"> <?= $library['library_name']; ?> </option>
 							<?php endforeach; ?>

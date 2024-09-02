@@ -1,0 +1,70 @@
+.details {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background: none;
+    border-radius: 8px;
+}
+
+.recent_project {
+    width: 100%;
+    max-width: 500px;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.recent_project h2 {
+    font-size: 24px;
+    color: #343a40;
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+form input[type="text"],
+form select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+form input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form input[type="submit"]:hover {
+    background-color: #fff;
+    border: 1px solid #0056b3;
+    color: black;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+    .recent_project {
+        width: 90%;
+    }
+}
+
+@media (max-width: 480px) {
+    .recent_project {
+        width: 95%;
+    }
+}

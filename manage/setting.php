@@ -9,4 +9,3 @@
 
 ?>
 
-Page de gestion du compte de l'administrateur
