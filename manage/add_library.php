@@ -45,7 +45,6 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Ajouter Bibliothèque</title>
 	<link rel="stylesheet" href="../assets/css/libra.css">
-	<link rel="stylesheet" href="../assets/css/edit_libra.css">
 	<link rel="stylesheet" href="../assets/css/add_libra.css">
 	<style>
 		.error {
