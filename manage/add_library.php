@@ -64,6 +64,99 @@
 			font-size: 18px;
 			margin-right: 10px; 
 		}
+		.details {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background: none;
+    border-radius: 8px;
+	margin: 0;
+}
+
+.recent_project h2 {
+    font-size: 24px;
+    color: #343a40;
+    text-align: center;
+}
+
+#libraryForm {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+#libraryForm input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+    text-transform: uppercase;
+}
+
+#libraryForm input[type="text"]:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(38, 143, 255, 0.5);
+}
+
+.error {
+    color: #dc3545;
+    font-size: 14px;
+    text-align: center;
+}
+
+#libraryForm input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#libraryForm input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+    .details {
+        padding: 15px;
+    }
+
+    #libraryForm input[type="text"] {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    #libraryForm input[type="submit"] {
+        font-size: 14px;
+        padding: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .details {
+        padding: 10px;
+    }
+
+    #libraryForm input[type="text"] {
+        font-size: 12px;
+        padding: 6px;
+    }
+
+    #libraryForm input[type="submit"] {
+        font-size: 12px;
+        padding: 6px;
+    }
+}
+
 	</style>
 	<link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
 </head>
