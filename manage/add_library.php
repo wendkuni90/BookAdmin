@@ -44,8 +44,8 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Ajouter Bibliothèque</title>
-	<link rel="stylesheet" href="../assets/css/libra.css">
-	<link rel="stylesheet" href="../assets/css/add_libra.css">
+	<link rel="stylesheet" href="../assets/css/libra.css?v=1.0">
+	<link rel="stylesheet" href="../assets/css/add_libra.css?v=1.0">
 	<style>
 		.error {
 			color: #ff0c04;
