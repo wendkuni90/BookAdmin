@@ -14,18 +14,21 @@
 	$libraries = $stmt1->fetchAll(PDO::FETCH_ASSOC);
 
 	if($_SERVER["REQUEST_METHOD"] == "POST") {
+		$default_pass = 'test';
+		$hashed = password_hash($default_pass,PASSWORD_DEFAULT);
 		$librarian_name = htmlspecialchars($_POST['librarian_name']);
 		$librarian_mail = htmlspecialchars($_POST['librarian_mail']);
 		$librarian_tel = htmlspecialchars($_POST['librarian_tel']);
 		$library_id = $_POST['library_id'];
 
-		$sql = "INSERT INTO librarian (librarian_name, librarian_mail, librarian_tel, library_id)
-				VALUES (:name, :mail, :tel, :library)";
+		$sql = "INSERT INTO librarian (librarian_name, librarian_mail, librarian_tel, library_id, librarian_pass)
+				VALUES (:name, :mail, :tel, :library, :pass)";
 		$stmt = $conn->prepare($sql);
 		$stmt->bindParam(':name', $librarian_name);
         $stmt->bindParam(':mail', $librarian_mail);
         $stmt->bindParam(':tel', $librarian_tel);
         $stmt->bindParam(':library', $library_id);
+		$stmt->bindParam(':pass', $hashed);
 		$stmt->execute();
 		header("location: librarian.php");
 		exit();
