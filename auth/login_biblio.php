@@ -8,7 +8,28 @@ Notons que si la session du bibliothécaire est lancée il ne peux plus avoir
 
 <?php 
 
-    if(isset($_SESSION['lib_name'])){}
+    if(isset($_SESSION['lib_id'])){
+        header("location: ../librarians/librarian_dash.php");
+    }
+    if(isset($_POST['bib_submit'])){
+        if(empty($_POST['bib_name']) OR empty($_POST['bib_pass'])){
+            echo "<script>alert('Attention: Un des champs est vide.')</script>";
+        } else {
+            $bib_name = trim($_POST['bib_name']);
+            $bib_pass = $_POST['bib_pass'];
+
+            //Requête préparée por éviter les injections sql
+            $stmt = $conn->prepare("SELECT * FROM librarian WHERE librarian_name = :name");
+            $stmt->bindParam(':name', $bib_name);
+            $stmt->execute();
+            $fetch = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            //Verifions si c'est sa premiere fois et si le mdp par défaut qu'il a saisi est correct
+            if($fetch && password_verify('test', $fetch['librarian_pass'])){
+
+            }
+        }
+    }
 
 ?>
 

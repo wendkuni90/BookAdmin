@@ -17,7 +17,7 @@ Notons que si la session du bibliothécaire est lancée il ne peux plus avoir
             echo "<script>alert('Attention: Un des champs est vide.')</script>";
         } else {
             $ad_name = trim($_POST['ad_name']);
-            $ad_passwd = trim($_POST['ad_pass']);
+            $ad_passwd = $_POST['ad_pass'];
 
             // Requête préparée pour éviter les injections SQL
             $stmt = $conn->prepare("SELECT * FROM admin WHERE admin_name = :name");
