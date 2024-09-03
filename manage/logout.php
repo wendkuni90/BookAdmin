@@ -9,7 +9,7 @@
         session_unset();
         session_destroy();
 
-        header("location: ../auth/login_admin.php");
+        header("location: ../");
         exit();
     }
 
