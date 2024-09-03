@@ -10,6 +10,7 @@ Notons que si la session du bibliothécaire est lancée il ne peux plus avoir
 
     if(isset($_SESSION['lib_id'])){
         header("location: ../librarians/librarian_dash.php");
+        exit();
     }
     if(isset($_POST['bib_submit'])){
         if(empty($_POST['bib_name']) OR empty($_POST['bib_pass'])){
@@ -19,14 +20,21 @@ Notons que si la session du bibliothécaire est lancée il ne peux plus avoir
             $bib_pass = $_POST['bib_pass'];
 
             //Requête préparée por éviter les injections sql
-            $stmt = $conn->prepare("SELECT * FROM librarian WHERE librarian_name = :name");
+            $stmt = $conn->prepare("SELECT librarian_id, librarian_pass, must_changes FROM librarian WHERE librarian_name = :name");
             $stmt->bindParam(':name', $bib_name);
             $stmt->execute();
             $fetch = $stmt->fetch(PDO::FETCH_ASSOC);
 
             //Verifions si c'est sa premiere fois et si le mdp par défaut qu'il a saisi est correct
-            if($fetch && password_verify('test', $fetch['librarian_pass'])){
-
+            if($fetch && password_verify($bib_pass,$fetch['librarian_pass'])){
+                if($fetch['must_changes']){
+                    header("location: change_biblio.php");
+                    exit();
+                } else {
+                    echo "On doit permettre une connexion normale";
+                }
+            } else {
+                echo "Tu as des données incorrectes";
             }
         }
     }
@@ -55,6 +63,9 @@ Notons que si la session du bibliothécaire est lancée il ne peux plus avoir
                     <input type="password" name="bib_pass" required>
                     <span class="placeholder">Mot de passe</span>
                 </div>
+                <?php if (!empty($error_message)): ?>
+                    <p class="error"><?= htmlspecialchars($error_message) ?></p>
+                <?php endif; ?>
                 <button type="submit" name="bib_submit">Se Connecter</button>
             </form>
         </div>
