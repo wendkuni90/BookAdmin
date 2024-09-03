@@ -8,7 +8,7 @@ Notons que si la session du bibliothécaire est lancée il ne peux plus avoir
 
 <?php
 
-    if(isset($_SESSION['ad_name'])){
+    if(isset($_SESSION['ad_id'])){
         header("location: ../manage/admin_dash.php");
     }
 

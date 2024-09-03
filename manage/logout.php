@@ -1,7 +1,7 @@
 <?php require "../includes/admin_session.php" ?>
 <?php 
 
-    if(!isset($_SESSION['ad_name'])){
+    if(!isset($_SESSION['ad_id'])){
         header("location: ../auth/login_admin.php");
         exit();
     } else {
