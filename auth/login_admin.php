@@ -28,6 +28,7 @@ Notons que si la session du bibliothécaire est lancée il ne peux plus avoir
             // Validation du mot de passe
             if($fetch && password_verify($ad_passwd, $fetch['admin_pass'])){
                 $_SESSION['ad_name'] = $fetch['admin_name'];
+                $_SESSION['ad_id'] = $fetch['admin_id'];
                 header("location: ../manage/admin_dash.php");
             } else {
                 $error_message = "Accès refusé: Données incorrectes.";
