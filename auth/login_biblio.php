@@ -12,7 +12,7 @@ Notons que si la session du bibliothécaire est lancée il ne peux plus avoir
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connexion</title>
-    <link rel="stylesheet" href="../assets/css/login_admin.css">
+    <link rel="stylesheet" href="../assets/css/login_admin.css?v=1.0">
 </head>
 <body>
     <div class="container">
