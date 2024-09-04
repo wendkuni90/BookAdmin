@@ -31,6 +31,7 @@ Notons que si la session du bibliothécaire est lancée il ne peux plus avoir
                 $_SESSION['ad_name'] = $fetch['admin_name'];
                 $_SESSION['ad_id'] = $fetch['admin_id'];
                 header("location: ../manage/admin_dash.php");
+                exit();
             } else {
                 $error_message = "Accès refusé: Données incorrectes.";
             }

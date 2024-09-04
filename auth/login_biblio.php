@@ -20,7 +20,7 @@ Notons que si la session du bibliothécaire est lancée il ne peux plus avoir
             $bib_pass = $_POST['bib_pass'];
 
             //Requête préparée por éviter les injections sql
-            $stmt = $conn->prepare("SELECT librarian_id, librarian_pass, must_changes FROM librarian WHERE librarian_name = :name");
+            $stmt = $conn->prepare("SELECT * FROM librarian WHERE librarian_name = :name");
             $stmt->bindParam(':name', $bib_name);
             $stmt->execute();
             $fetch = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -28,13 +28,16 @@ Notons que si la session du bibliothécaire est lancée il ne peux plus avoir
             //Verifions si c'est sa premiere fois et si le mdp par défaut qu'il a saisi est correct
             if($fetch && password_verify($bib_pass,$fetch['librarian_pass'])){
                 if($fetch['must_changes']){
-                    header("location: change_biblio.php");
+                    $id = $fetch['librarian_id'];
+                    header("location: change_biblio.php?id=$id");
                     exit();
                 } else {
-                    echo "On doit permettre une connexion normale";
+                    $_SESSION['lib_id'] = $fetch['librarian_id'];
+                    header("location: ../librarians/librarian_dash.php");
+                    exit();
                 }
             } else {
-                echo "Tu as des données incorrectes";
+                $error_message = "Données incorrects";
             }
         }
     }

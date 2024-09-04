@@ -1,19 +1,25 @@
-<?php require "../includes/admin_session.php" ?>
+<?php require "../includes/librarian_session.php" ?>
 <?php require "../config/config.php" ?>
-<?php 
 
-	if(!isset($_SESSION['ad_id'])){
-		header("location: ../auth/login_admin.php");
-		exit();
-	}
+
+<?php
+
+    if(!isset($_SESSION['lib_id'])){
+        header("location: ../auth/login_biblio.php");
+        exit();
+    }
+    $id = $_SESSION['lib_id'];
+    $research = $conn->prepare("SELECT * FROM librarian WHERE librarian_id = '$id'");
+    $research->execute();
+    $librarian = $research->fetch(PDO::FETCH_ASSOC);
 
 ?>
-<?php require "scripts/total_Student.php" ?>
-<?php require "scripts/total_Librarian.php" ?>
-<?php require "scripts/total_Book.php" ?>
-<?php require "scripts/total_Borrowings.php" ?>
-<?php require "scripts/recent_Student.php" ?>
-<?php require "scripts/recent_Borrowings.php" ?>
+
+<?php require "scripts/total_student.php" ?>
+<?php require "scripts/total_librarian.php" ?>
+<?php require "scripts/total_book.php" ?>
+<?php require "scripts/total_borrow.php" ?>
+<?php require "scripts/recent_students.php" ?>
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -21,7 +27,7 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Panneau Administrateur</title>
+	<title>Panneau d'administration</title>
 	<link rel="stylesheet" href="../assets/css/admin_dash.css?v=1.0">
 
 	<link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
@@ -127,9 +133,9 @@
 			<div class="user_wrapper">
 				<!-- <img src="img/user.jpg" alt=""> -->
 				<p>Bienvenue</p>
-				<?php if(isset($_SESSION['ad_name'])): ?>
+				<?php if(isset($_SESSION['lib_id'])): ?>
                     <h2 style="text-transform: capitalize; font-size:20px;">
-                    	<?php echo $_SESSION['ad_name']; ?>
+                    	<?php echo $librarian['librarian_name']; ?>
                     </h2>
                 <?php endif; ?>
 			</div>
@@ -138,7 +144,7 @@
 		<div class="card-boxes">
 			<div class="box">
 				<div class="right_side">
-					<div class="numbers"> <?php echo $totalLibrarian; ?> </div>
+					<div class="numbers"> <?php echo $total_librarian; ?> </div>
 					<div class="box_topic">Bibliothécaires</div>
 				</div>
 				<i class='bx bx-user'></i>
@@ -146,7 +152,7 @@
 
 			<div class="box">
 				<div class="right_side">
-					<div class="numbers"> <?php echo $totalEtudiant; ?> </div>
+					<div class="numbers"> <?php echo $total_student; ?> </div>
 					<div class="box_topic">Etudiants</div>
 				</div>
 				<i class='bx bxs-user'></i>
@@ -154,7 +160,7 @@
 			
 			<div class="box">
 				<div class="right_side">
-					<div class="numbers"> <?php echo $totalBook; ?> </div>
+					<div class="numbers"> <?php echo $total_book; ?> </div>
 					<div class="box_topic">Livres</div>
 				</div>
 				<i class='bx bx-book-open'></i>
@@ -162,7 +168,7 @@
 
 			<div class="box">
 				<div class="right_side">
-					<div class="numbers"> <?php echo $totalEmprunts; ?> </div>
+					<div class="numbers"> <?php echo $total_borrow; ?> </div>
 					<div class="box_topic">Emprunts</div>
 				</div>
 				<i class='bx bxs-cart'></i>
@@ -185,8 +191,8 @@
 					</thead>
 					<!-- Nous afficherons que les 10 derniers etudiants et emprunts -->
 					<tbody>
-						<?php if(!empty($borrows)): ?>
-							<?php foreach ($borrows as $borrow): ?>
+						<?php if(!empty($recent_borrows)): ?>
+							<?php foreach ($recent_borrows as $borrow): ?>
 								<tr>
 									<td>
 										<?= htmlspecialchars($borrow['book_title']); ?>
@@ -219,8 +225,8 @@
 				</div>
 				<table>
 					<tbody>
-						<?php if(!empty($students)): ?>
-							<?php foreach ($students as $student): ?>
+						<?php if(!empty($recent_students)): ?>
+							<?php foreach ($recent_students as $student): ?>
 								<tr>
 									<td style="text-transform: uppercase;">
 										<?= htmlspecialchars($student['student_ine']); ?>
