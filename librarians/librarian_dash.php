@@ -20,6 +20,7 @@
 <?php require "scripts/total_book.php" ?>
 <?php require "scripts/total_borrow.php" ?>
 <?php require "scripts/recent_students.php" ?>
+<?php require "scripts/recent_borrowings.php" ?>
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -50,23 +51,7 @@
 				</a>
 			</li>
 			<li>
-				<a href="librarian.php">
-				<i class='bx bx-user'></i>
-				<span class="links_name">
-					Bibliothécaires
-				</span>
-				</a>
-			</li>
-			<li>
-				<a href="library.php">
-				<i class='bx bx-book-open'></i>
-				<span class="links_name">
-					Bibliothèques
-				</span>
-				</a>
-			</li>
-			<li>
-				<a href="student.php">
+				<a href="students.php">
 				<i class='bx bx-user'></i>
 				<span class="links_name">
 					Etudiants
@@ -74,15 +59,15 @@
 				</a>
 			</li>
 			<li>
-				<a href="book.php">
-				<i class='bx bx-book' ></i>
+				<a href="books.php">
+				<i class='bx bx-book-open'></i>
 				<span class="links_name">
 					Livres
 				</span>
 				</a>
 			</li>
-			<li>
-				<a href="borrow.php">
+            <li>
+				<a href="borrowings.php">
 				<i class='bx bxs-cart'></i>
 				<span class="links_name">
 					Emprunts
@@ -90,18 +75,26 @@
 				</a>
 			</li>
 			<li>
-				<a href="add_library.php">
-				<i class='bx bxs-book'></i>
+				<a href="loan.php">
+				<i class='bx bxs-cart'></i>
 				<span class="links_name">
-					Ajouter Bibliothèque
+					Faire un prêt
 				</span>
 				</a>
 			</li>
 			<li>
-				<a href="add_librarian.php">
+				<a href="add_student.php">
 				<i class='bx bxs-user-plus'></i>
 				<span class="links_name">
-					Ajouter Bibliothécaire
+					Ajouter Etudiant
+				</span>
+				</a>
+			</li>
+			<li>
+				<a href="add_book.php">
+				<i class='bx bxs-book'></i>
+				<span class="links_name">
+					Ajouter Livre
 				</span>
 				</a>
 			</li>
