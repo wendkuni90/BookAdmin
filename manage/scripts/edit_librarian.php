@@ -193,12 +193,12 @@
 			</div>
 		</div>
 		<div id="previewModal">
-    <div class="modal-content">
+    <div class="modal-content" style="text-transform:uppercase;">
         <span class="close-button">&times;</span>
         <h2>Confirmer les modifications</h2>
         <p>Nom: <span id="previewLibrarianName"></span></p>
         <p>Téléphone: <span id="previewLibrarianTel"></span></p>
-        <p>Email: <span id="previewLibrarianMail"></span></p>
+        <p style="text-transform:lowercase;">Email: <span id="previewLibrarianMail"></span></p>
         <p>Bibliothèque: <span id="previewLibraryName"></span></p>
         <button id="confirmButton">Confirmer</button>
         <button id="cancelButton">Annuler</button>

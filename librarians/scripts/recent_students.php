@@ -10,7 +10,7 @@
             FROM librarian l
             INNER JOIN student s ON l.library_id = s.library_id
             WHERE l.librarian_id = :librarian_id
-            AND s.creation_date >= DATE_SUB(CURDATE(), INTERVAL 5 DAY)
+            AND s.creation_date >= DATE_SUB(NOW(), INTERVAL 5 DAY)
             ORDER BY s.creation_date DESC
             LIMIT 10";
 

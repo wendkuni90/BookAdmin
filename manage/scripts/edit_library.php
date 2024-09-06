@@ -168,7 +168,7 @@
 			</div>
 		</div>
 		<div id="previewModal" class="modal">
-    <div class="modal-content">
+    <div class="modal-content" style="text-transform:uppercase;">
         <span class="close-button">&times;</span>
         <h2>Confirmer les modifications</h2>
         <p>Nom de la bibliothèque: <span id="previewLibraryName"></span></p>
