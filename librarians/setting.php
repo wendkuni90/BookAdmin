@@ -24,7 +24,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Paramètres</title>
 	<link rel="stylesheet" href="../assets/css/libra.css?v=1.0">
-
+    <link rel="stylesheet" href="../assets/css/lib_setting.css">
 	<link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
@@ -129,7 +129,7 @@
 		</div>
 
 
-		<div class="details" style="background:none;">
+		<div class="details">
 			<h2>Profil Bibliothécaire</h2>
             <form action="scripts/settings_scripts/update_name.php" method="POST">
                 <label for="nom">Nom complet:</label>
@@ -157,5 +157,6 @@
 	</section>
 
 	<script src="../assets/js/dash.js"></script>
+    <script src="../assets/js/lib_setting.js"></script>
 </body>
 </html>

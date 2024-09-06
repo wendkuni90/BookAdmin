@@ -22,7 +22,7 @@
 	<title>Paramètres</title>
 	<link rel="stylesheet" href="../assets/css/libra.css">
 	<link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
-
+	<link rel="stylesheet" href="../assets/css/ad_setting.css">k
 </head>
 <body>
 	<div class="sidebar">
@@ -133,7 +133,7 @@
 			</div>
 		</div>
 
-		<div class="details" style="background:none;">
+		<div class="details">
 			<h2>Profil Administrateur</h2>
 			<form action="scripts/setting_script/update_name.php" method="POST">
 				<label for="nom">Nom complet:</label>
@@ -162,5 +162,6 @@
 	</section>
 
 	<script src="../assets/js/dash.js"></script>
+	<script src="../assets/js/ad_setting.js"></script>
 </body>
 </html>
