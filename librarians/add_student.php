@@ -306,7 +306,7 @@
             </div>
             <div class="form-group">
                 <label for="student_mail">Adresse mail</label>
-                <input type="text" id="student_mail" name="student_mail" style="text-transform:lowercase;" require>
+                <input type="text" id="student_mail" name="student_mail" style="text-transform:lowercase;" required>
             </div>
             <div class="form-group">
                 <label for="library_id">Bibliothèque</label>
