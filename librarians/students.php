@@ -151,7 +151,7 @@
 									<td>
 										<?= htmlspecialchars($student['student_ine']); ?>
 									</td>
-									<td>
+									<td style="text-transform:capitalize;">
 										<?= htmlspecialchars($student['student_name']); ?>
 									</td>
 									<td>

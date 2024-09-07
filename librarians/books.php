@@ -152,10 +152,10 @@
 									<td>
 										<?= htmlspecialchars($book['book_quote']); ?>
 									</td>
-									<td>
+									<td style="text-transform:uppercase;">
 										<?= htmlspecialchars($book['book_title']); ?>
 									</td>
-									<td>
+									<td style="text-transform:uppercase;">
                                         <?= htmlspecialchars($book['book_auth']); ?>
 									</td>
                                     <td>
