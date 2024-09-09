@@ -140,7 +140,7 @@
 		</div>
 		<ul>
 			<li>
-				<a href="librarian_dash.php">
+				<a href="../librarian_dash.php">
 				<i class='bx bx-grid-alt'></i>
 				<span class="links_name">
 					Tableau de bord
@@ -148,7 +148,7 @@
 				</a>
 			</li>
 			<li>
-				<a href="" class="active">
+				<a href="../students.php" class="active">
 				<i class='bx bx-user'></i>
 				<span class="links_name">
 					Etudiants
@@ -156,7 +156,7 @@
 				</a>
 			</li>
 			<li>
-				<a href="books.php">
+				<a href="../books.php">
 				<i class='bx bx-book-open'></i>
 				<span class="links_name">
 					Livres
@@ -164,7 +164,7 @@
 				</a>
 			</li>
             <li>
-				<a href="borrowings.php">
+				<a href="../borrowings.php">
 				<i class='bx bxs-cart'></i>
 				<span class="links_name">
 					Emprunts
@@ -172,7 +172,7 @@
 				</a>
 			</li>
 			<li>
-				<a href="loan.php">
+				<a href="../loan.php">
 				<i class='bx bxs-cart'></i>
 				<span class="links_name">
 					Faire un prêt
@@ -180,7 +180,7 @@
 				</a>
 			</li>
 			<li>
-				<a href="add_student.php">
+				<a href="../add_student.php">
 				<i class='bx bxs-user-plus'></i>
 				<span class="links_name">
 					Ajouter Etudiant
@@ -188,7 +188,7 @@
 				</a>
 			</li>
 			<li>
-				<a href="add_book.php">
+				<a href="../add_book.php">
 				<i class='bx bxs-book'></i>
 				<span class="links_name">
 					Ajouter Livre
@@ -196,7 +196,7 @@
 				</a>
 			</li>
 			<li>
-				<a href="setting.php">
+				<a href="../setting.php">
 				<i class='bx bx-cog'></i>
 				<span class="links_name">
 					Paramètres
@@ -204,7 +204,7 @@
 				</a>
 			</li>
 			<li class="login">
-				<a href="logout.php">
+				<a href="../logout.php">
 				<span class="links_name login_out">
 					Se déconnecter
 				</span>
@@ -252,6 +252,6 @@
 		
 	</section>
 
-	<script src="../assets/js/dash.js"></script>
+	<script src="../../assets/js/dash.js"></script>
 </body>
 </html>
