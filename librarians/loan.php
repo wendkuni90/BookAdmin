@@ -216,13 +216,15 @@
                     <?php endforeach; ?>
                 </select>
 
-                <button type="submit">Prêter</button>
-            </form>
-            <div id="message" style="background-color: #f8d7da;color: #721c24;">
+                <div id="message" style="background-color: #f8d7da;color: #721c24;">
                 <?php if(!empty($error_message)): ?>
                     <?= $error_message; ?>
                 <?php endif; ?>
-            </div>
+                </div>
+                
+                <button type="submit">Prêter</button>
+            </form>
+            
         </div>
 
         <script src="../assets/js/loan.js"></script>
