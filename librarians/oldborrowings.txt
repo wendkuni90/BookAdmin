@@ -24,7 +24,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Panneau d'administration</title>
 	<link rel="stylesheet" href="../assets/css/libra.css?v=1.0">
-	<link rel="stylesheet" href="../assets/css/bore.css?v=1.0">
+
 	<link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
@@ -127,26 +127,63 @@
                 <?php endif; ?>
 			</div>
 		</div>
-		
-		<div class="container">
-			<h1>Gestion des Emprunts</h1>
 
-			<!-- Ajout du formulaire de recherche
-			<form method="GET" class="search-form">
-				<input type="text" name="search" placeholder="Rechercher par etudiant ou livre" value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>">
-				<button type="submit">Rechercher</button>
-			</form> -->
 
-			<?php 
-				require 'scripts/borrows_scripts/emprunts.php';
-				
-				afficherTableauEmprunts($empruntsRetard, "Emprunts en retard", true);
-				afficherTableauEmprunts($empruntsCourants, "Emprunts en cours", true);
-				afficherTableauEmprunts($empruntsRetournes, "Emprunts retournés");
-			?>
+		<div class="details">
+			<div class="recent_project">
+				<div class="card_header">
+					<h2>Emprunts</h2>
+				</div>
+				<table>
+					<thead>
+						<tr>
+							<td>Etudiant</td>
+							<td>Livre</td>
+							<td>Date</td>
+                            <td>Retour</td>
+                            <td>Statut</td>
+                            <td>Actions</td>
+						</tr>
+					</thead>
+					<tbody>
+						<?php if(!empty($borrows)): ?>
+							<?php foreach ($borrows as $borrow): ?>
+								<tr>
+									<td>
+										<?= htmlspecialchars($borrow['student_name']); ?>
+									</td>
+									<td>
+										<?= htmlspecialchars($borrow['book_title']); ?>
+									</td>
+									<td>
+                                        <?= htmlspecialchars($borrow['borrow_date']); ?>
+									</td>
+                                    <td>
+                                        <?= htmlspecialchars($borrow['borrow_return']); ?>
+                                    </td>
+                                    <td>
+                                        <?= htmlspecialchars($borrow['borrow_status']); ?>
+                                    </td>
+									<td style="display:flex;">
+                                        <a href="scripts/edit_borrow.php?id=<?=$borrow['borrow_id'];?>" style="width:32px; height:32px; margin-right:5px">
+                                                <img src="../assets/img/edit.svg" alt="">
+                                        </a> 
+										<div style="width:1px;height:22px;background-color:black;"></div>
+										<a href="scripts/delete_borrow.php?id=<?=$borrow['borrow_id'];?>" onclick="return confirm('Supprimer emprunt ?');" style="width:32px; height:32px;margin-left:5px">
+											<img src="../assets/img/trash.svg" alt="">
+										</a>
+									</td>
+								</tr>
+							<?php endforeach; ?>
+						<?php else: ?>
+							<tr>
+								<td colspan="6">Aucun Emprunt trouvé.</td>
+							</tr>
+						<?php endif; ?>
+					</tbody>
+				</table>
+			</div>
 		</div>
-
-
 	</section>
 
 	<script src="../assets/js/dash.js"></script>

@@ -30,7 +30,7 @@ select, button{
 }
 
 button{
-    background-color: #003cff;
+    background-color: #2193b0;
     color: white;
     border: none;
     cursor: pointer;
@@ -38,7 +38,7 @@ button{
 }
 
 button:hover{
-    background-color: #2a01c0;
+    background-color: #1c7d98;
 }
 
 message{
