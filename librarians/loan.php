@@ -55,7 +55,7 @@
                 try{
                     //Ajout de l'emprunt
                     $sql = "INSERT INTO borrow (student_id, book_id, borrow_date, borrow_return, librarian_id)
-                            VALUES (:stid, :bkid, NOW(), NOW()+10, :lbid)";
+                            VALUES (:stid, :bkid, NOW(), CURDATE()+10, :lbid)";
                     $stmt = $conn->prepare($sql);
                     $stmt->bindParam(':stid', $student_id, PDO::PARAM_INT);
                     $stmt->bindParam(':bkid', $book_id, PDO::PARAM_INT);
