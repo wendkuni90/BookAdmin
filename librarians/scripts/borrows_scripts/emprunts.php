@@ -4,7 +4,7 @@
         header("location: ../../../auth/login_biblio.php");
         exit();
     }
-
+    $librarian_id = $_SESSION['lib_id'];
     // Fonction pour afficher un tableau d'emprunts
     function afficherTableauEmprunts($emprunts, $titre, $editable = false) {
         if(empty($emprunts)) {
@@ -77,7 +77,7 @@
             $stmt = $conn->prepare("UPDATE borrow SET notification_sent = 1 WHERE borrow_id = ?");
             $stmt->execute([$retard['borrow_id']]);
         }catch(Exception $e){
-            
+
         }
     }
     
@@ -93,14 +93,15 @@
 
     //Fonction pour récupérer les emprunts avec recherche
     function getEmprunts($conn, $status) {
+        $librarian_id = $_SESSION['lib_id'];
         $query = "SELECT b.borrow_id, s.student_name, bk.book_title, b.borrow_date, b.borrow_return
                     FROM borrow b
                     JOIN student s ON b.student_id = s.student_id
                     JOIN book bk ON b.book_id = bk.book_id
-                    WHERE b.borrow_status = ?
+                    WHERE b.borrow_status = ? AND b.librarian_id = ?
                     ORDER BY b.borrow_date DESC";
         $stmt = $conn->prepare($query);
-        $params = array_merge([$status]);
+        $params = array_merge([$status,$librarian_id]);
         $stmt->execute($params);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }

@@ -59,7 +59,7 @@
                     $stmt = $conn->prepare($sql);
                     $stmt->bindParam(':stid', $student_id, PDO::PARAM_INT);
                     $stmt->bindParam(':bkid', $book_id, PDO::PARAM_INT);
-                    $stmt->bindParam(':lbid', $_SESSION['lib_id'], PDO::PARAM_INT);
+                    $stmt->bindParam(':lbid', $librarian['librarian_id'], PDO::PARAM_INT);
                     $stmt->execute();
     
                     //Mise à jour du nombre d'exemplaires
