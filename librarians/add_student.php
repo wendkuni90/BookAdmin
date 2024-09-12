@@ -98,7 +98,7 @@
                 // $mail->Subject = 'BookTrack';
                 // $mail->Body = "Salut. Vos informations de connexion sont: -- <strong>$aleatPassword</strong> --. Cordialement l'équipe de BookTrack.";
 
-                //Online en utilisant Mailhog
+                //Online en utilisant SMTP
                 $mail->isSMTP();
                 $mail->Host = 'smtp.gmail.com';
                 $mail->SMTPAuth = true;
