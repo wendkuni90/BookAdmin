@@ -4,7 +4,6 @@
         header("location: ../../../auth/login_biblio.php");
         exit();
     }
-    $librarian_id = $_SESSION['lib_id'];
     // Fonction pour afficher un tableau d'emprunts
     function afficherTableauEmprunts($emprunts, $titre, $editable = false) {
         if(empty($emprunts)) {
@@ -14,7 +13,7 @@
         }
 
         echo "<h2>$titre</h2>";
-        echo "<table>";
+        echo "<table id='dataTable'>";
         echo "<tr><th>Etudiant</th><th>Livre</th><th>Date d'emprunt</th><th>Date de retour</th>";
         if($editable) {
             echo "<th>Action</th>";
@@ -93,15 +92,21 @@
 
     //Fonction pour récupérer les emprunts avec recherche
     function getEmprunts($conn, $status) {
-        $librarian_id = $_SESSION['lib_id'];
+        $id = $_SESSION['lib_id'];
+        $research = $conn->prepare("SELECT * FROM librarian WHERE librarian_id = '$id'");
+        $research->execute();
+        $librarian = $research->fetch(PDO::FETCH_ASSOC);
+        $library_id = $librarian['library_id'];
+        
         $query = "SELECT b.borrow_id, s.student_name, bk.book_title, b.borrow_date, b.borrow_return
                     FROM borrow b
                     JOIN student s ON b.student_id = s.student_id
                     JOIN book bk ON b.book_id = bk.book_id
-                    WHERE b.borrow_status = ? AND b.librarian_id = ?
+                    JOIN library l ON l.library_id = bk.library_id
+                    WHERE b.borrow_status = ? AND l.library_id = ?
                     ORDER BY b.borrow_date DESC";
         $stmt = $conn->prepare($query);
-        $params = array_merge([$status,$librarian_id]);
+        $params = array_merge([$status,$library_id]);
         $stmt->execute($params);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }

@@ -25,6 +25,7 @@
 	<title>Panneau d'administration</title>
 	<link rel="stylesheet" href="../assets/css/libra.css?v=1.0">
 	<link rel="stylesheet" href="../assets/css/bore.css?v=1.0">
+	<link rel="stylesheet" href="../assets/css/search.css">
 	<link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
@@ -130,6 +131,9 @@
 		
 		<div class="container">
 			<h1>Gestion des Emprunts</h1>
+			<div style="display:flex;align-item:center;justify-content:center;">
+				<input type='text' id='search' class='search-input' placeholder='Rechercher...' style="">
+			</div>
 
 			<!-- Ajout du formulaire de recherche
 			<form method="GET" class="search-form">
@@ -150,5 +154,6 @@
 	</section>
 
 	<script src="../assets/js/dash.js"></script>
+	<script src="../assets/js/search.js"></script>
 </body>
 </html>

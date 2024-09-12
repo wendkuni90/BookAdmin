@@ -25,7 +25,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Panneau d'administration</title>
 	<link rel="stylesheet" href="../assets/css/libra.css?v=1.0">
-
+	<link rel="stylesheet" href="../assets/css/search.css">
 	<link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
@@ -131,11 +131,12 @@
 
 
 		<div class="details">
-			<div class="recent_project">
+			<div class="recent_project" style="text-align:center;">
 				<div class="card_header">
 					<h2>Livres</h2>
+					<input type="text" id="search" class="search-input" placeholder="Rechercher...">
 				</div>
-				<table>
+				<table id="dataTable">
 					<thead>
 						<tr>
 							<td>Côte</td>
@@ -184,5 +185,6 @@
 	</section>
 
 	<script src="../assets/js/dash.js"></script>
+	<script src="../assets/js/search.js"></script>
 </body>
 </html>
