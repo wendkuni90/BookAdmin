@@ -157,6 +157,5 @@
 	</section>
 
 	<script src="../assets/js/dash.js"></script>
-    <script src="../assets/js/lib_setting.js"></script>
 </body>
 </html>

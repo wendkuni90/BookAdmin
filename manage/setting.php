@@ -22,7 +22,7 @@
 	<title>Paramètres</title>
 	<link rel="stylesheet" href="../assets/css/libra.css">
 	<link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
-	<link rel="stylesheet" href="../assets/css/ad_setting.css">k
+	<link rel="stylesheet" href="../assets/css/ad_setting.css">
 </head>
 <body>
 	<div class="sidebar">
@@ -162,6 +162,5 @@
 	</section>
 
 	<script src="../assets/js/dash.js"></script>
-	<script src="../assets/js/ad_setting.js"></script>
 </body>
 </html>

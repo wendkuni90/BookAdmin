@@ -1,88 +1,126 @@
-.details {
-    background: linear-gradient(135deg, #e8f5f7, #d7e6fa);
-    border-radius: 12px;
+.details{
     padding: 30px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    width: 80%;
     margin: 0 auto;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    width: 100%;
+    /* text-align: center; */
+}
+h2{
+    color: #4a4a4a;
     text-align: center;
+    font-size: 28px;
+    margin-bottom: 30px;
 }
-
-h2, h3 {
-    color: #000000;
-    font-weight: 600;
-}
-
-label {
-    color: #252525;
-    font-size: 0.9em;
-    display: block;
-    margin-top: 15px;
-    text-align: left;
-}
-
-input[type="text"], input[type="email"], input[type="password"] {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border-radius: 6px;
-    border: none;
-    background-color: #eaf6ff;
-    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-input[type="text"]:read-only, input[type="email"]:read-only {
-    cursor: not-allowed;
-    background-color: #dcdcdc;
-}
-
-input[type="submit"] {
-    background-color: #6dabe4;
-    color: white;
-    border: none;
-    padding: 12px 20px;
-    border-radius: 6px;
-    font-size: 1em;
-    cursor: pointer;
-    margin-top: 15px;
-    transition: background-color 0.3s ease-in-out;
-}
-
-input[type="submit"]:hover {
-    background-color: #549acb;
-}
-
-.btn {
-    width: 100%;
-}
-
-input:focus {
-    outline: none;
-    box-shadow: 0 0 5px #66a6ff;
-}
-
-h3 {
+h3{
+    color: #4a90e2;
+    font-size: 20px;
     margin-top: 30px;
-    font-size: 1.2em;
-}
-
-form {
     margin-bottom: 20px;
 }
-
-/* Fun animations */
-@keyframes glow {
-    0% {
-        box-shadow: 0 0 5px #66a6ff, 0 0 15px #66a6ff;
-    }
-    50% {
-        box-shadow: 0 0 20px #66a6ff, 0 0 30px #66a6ff;
-    }
-    100% {
-        box-shadow: 0 0 5px #66a6ff, 0 0 15px #66a6ff;
-    }
+form{
+    display: flex;
+    flex-direction: column;
 }
-
-input[type="submit"]:hover {
-    animation: glow 1s infinite alternate;
+label{
+    margin-bottom: 5px;
+    color: #666;
+    font-weight: 600;
 }
+input[type="text"], input[type="email"], input[type="password"]{
+    padding: 12px;
+    width: 100%;
+    margin-bottom: 15px;
+    border: 2px solid #ddd;
+    border-radius: 30px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus{
+    border-color: #4a90e2;
+    outline: none;
+}
+input[readonly]{
+    background-color: #f9f9f9;
+    color: #888;
+    cursor: not-allowed;
+}
+input[type="submit"]{
+    background-color: #4a90e2;
+    color: #fff;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+input[type="submit"]:hover{
+    background-color: #357adb;
+}
+input[readonly]{
+    background-image: linear-gradient(45deg, #f0f0f0 25%, #e8e8e8 25%, #e8e8e8 50%, #f0f0f0 50%, #f0f0f0 75%, #e8e8e8 75%, #e8e8e8 100%);
+    background-size: 40px 40px;
+    animation: strips 1s linear infinite;
+}
+@keyframes strips {
+    0% {background-position: 0 0;}
+    100% {background-position: 40px 0;}
+}
+/*
+h2, h3{
+    color: #4a90e2;
+    margin-bottom: 20px;
+}
+form{
+    margin-bottom: 30px;
+}
+label{
+    display: block;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+input[type="text"], input[type="email"], input[type="password"]{
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus{
+    border-color: #4a90e2;
+    outline: none;
+}
+input[readonly]{
+    background-color: #f0f0f0;
+    cursor: not-allowed;
+}
+input[type="submit"]{
+    background-color: #4a90e2;
+    color: #fff;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+input[type="submit"]:hover{
+    background-color: #357adb;
+}*/
+@media (max-width:600px) {
+    .details{
+        padding: 20px;
+    }
+    input[type="text"], input[type="email"], input[type="password"]{
+        padding: 10px;
+        font-size: 14px;
+    }
+    input[type="submit"]{
+        padding: 10px;
+        font-size: 14px;
+    }
+} 
